@@ -257,7 +257,7 @@ runs:
     if: ${{ inputs.step == 'create-comment' }}
     uses: actions/checkout@v4
     with:
-      repository: lkstrp/pypsa-validator
+      repository: PyPSA/pypsa-validator
       ref: ${{ github.repository }}
       ssh-key: ${{ inputs.validator_key }}
       path: validator-repo
