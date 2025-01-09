@@ -1,6 +1,6 @@
 from pathlib import Path
 
-# Mounted Piaths
+# Mounted Paths
 PATH_ARTIFACTS = Path("/artifacts")
 PATH_REPO = Path("/repo")
 

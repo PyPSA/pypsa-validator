@@ -11,6 +11,7 @@ Provides:
 """
 
 import git
+import yaml
 
 from reporter.meta.config import HASH_FEAT, HASH_MAIN, PATH_CONFIG
 from reporter.meta.paths import PATH_REPO
@@ -54,3 +55,12 @@ BEHIND_COUNT = len(
         )
     )
 )
+
+# Read in hash specific config
+file_blob = repo.commit(HASH_MAIN).tree / str(PATH_CONFIG)
+CONFIG_MAIN = yaml.safe_load(file_blob.data_stream.read().decode("utf-8"))
+file_blob = repo.commit(HASH_FEAT).tree / str(PATH_CONFIG)
+CONFIG_FEAT = yaml.safe_load(file_blob.data_stream.read().decode("utf-8"))
+
+PREFIX_MAIN = CONFIG_MAIN["run"]["prefix"]
+PREFIX_FEAT = CONFIG_FEAT["run"]["prefix"]

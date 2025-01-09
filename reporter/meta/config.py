@@ -1,4 +1,3 @@
-from reporter.meta.paths import PATH_ARTIFACTS, PATH_REPO
 from reporter.utils import read_env_var
 
 # Project
@@ -15,13 +14,4 @@ HASH_FEAT = read_env_var("HASH_FEAT")
 # Configuration
 PLOTS = read_env_var("PLOTS")
 
-
-prefixes = [
-    prefix
-    for prefix in (PATH_ARTIFACTS / "main" / "results").iterdir()
-    if prefix.is_dir()
-]
-
-PREFIX = prefixes[0].name # TODO: Handle different prefixes
-
-PATH_CONFIG = PATH_REPO / read_env_var("PATH_CONFIG")
+PATH_CONFIG = read_env_var("PATH_CONFIG")

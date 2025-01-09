@@ -1,8 +1,10 @@
-import gitlab
 import re
-from reporter.utils import REPORT_IDENTIFIER, read_env_var
+
+import gitlab
+
+from reporter.meta.config import DOMAIN, PLATFORM
 from reporter.meta.paths import PATH_ARTIFACTS
-from reporter.meta.config import PREFIX, PLATFORM, DOMAIN
+from reporter.utils import REPORT_IDENTIFIER, read_env_var
 
 
 def publish(text: str) -> None:
