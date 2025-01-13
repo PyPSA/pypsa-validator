@@ -12,7 +12,6 @@ def main():
     report = "".join(comps)
 
     print(report)
-    import os
 
     publish(report)
 
