@@ -10,10 +10,12 @@ Provides:
     - BEHIND_COUNT: Number of commits behind the main branch.
 """
 
-import git
+from pathlib import Path
 
-from reporter.meta.config import HASH_FEAT, HASH_MAIN, PATH_CONFIG
-from reporter.meta.paths import PATH_REPO
+import git
+import yaml
+
+from reporter.meta.config import HASH_FEAT, HASH_MAIN, PATH_CONFIG, PATH_REPO
 
 repo = git.Repo(PATH_REPO)
 
@@ -53,4 +55,24 @@ BEHIND_COUNT = len(
             right_only=True,
         )
     )
+)
+
+# Read in hash specific config
+file_blob = repo.commit(HASH_MAIN).tree / str(PATH_CONFIG)
+CONFIG_MAIN = yaml.safe_load(file_blob.data_stream.read().decode("utf-8"))
+file_blob = repo.commit(HASH_FEAT).tree / str(PATH_CONFIG)
+CONFIG_FEAT = yaml.safe_load(file_blob.data_stream.read().decode("utf-8"))
+
+
+PATH_MAIN_RESULTS = (
+    Path("main")
+    / "results"
+    / CONFIG_MAIN.get("run", {}).get("prefix", "")
+    / CONFIG_MAIN.get("run", {}).get("name", "")
+)
+PATH_FEAT_RESULTS = (
+    Path("feat")
+    / "results"
+    / CONFIG_FEAT.get("run", {}).get("prefix", "")
+    / CONFIG_FEAT.get("run", {}).get("name", "")
 )
