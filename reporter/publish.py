@@ -2,8 +2,7 @@ import re
 
 import gitlab
 
-from reporter.meta.config import DOMAIN, PLATFORM
-from reporter.meta.paths import PATH_ARTIFACTS
+from reporter.meta.config import DOMAIN, PATH_ARTIFACTS, PLATFORM
 from reporter.utils import REPORT_IDENTIFIER, read_env_var
 
 
