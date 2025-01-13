@@ -24,7 +24,9 @@ def publish_on_gitlab(text: str) -> None:
 
     def _upload_image_to_github(name):
         path = PATH_ARTIFACTS / name
-        assert path.exists(), f"File {path} does not exist"
+        if not path.exists():
+            msg = f"File {path} does not exist. Are you sure you specified the correct configuration?"
+            raise FileNotFoundError(msg)
         uploaded_file = project.upload(name, filedata=open(path, "rb"))
         return uploaded_file["url"]
 

@@ -67,12 +67,12 @@ CONFIG_FEAT = yaml.safe_load(file_blob.data_stream.read().decode("utf-8"))
 PATH_MAIN_RESULTS = (
     Path("main")
     / "results"
-    / CONFIG_FEAT.get("run", {}).get("prefix", "")
-    / CONFIG_FEAT.get("run", {}).get("name", "")
+    / CONFIG_MAIN.get("run", {}).get("prefix", "")
+    / CONFIG_MAIN.get("run", {}).get("name", "")
 )
 PATH_FEAT_RESULTS = (
     Path("feat")
     / "results"
-    / CONFIG_MAIN.get("run", {}).get("prefix", "")
-    / CONFIG_MAIN.get("run", {}).get("name", "")
+    / CONFIG_FEAT.get("run", {}).get("prefix", "")
+    / CONFIG_FEAT.get("run", {}).get("name", "")
 )
