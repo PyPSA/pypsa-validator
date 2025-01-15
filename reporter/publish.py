@@ -1,8 +1,9 @@
-import gitlab
 import re
+
+import gitlab
+
+from reporter.meta.config import DOMAIN, PATH_ARTIFACTS, PLATFORM
 from reporter.utils import REPORT_IDENTIFIER, read_env_var
-from reporter.meta.paths import PATH_ARTIFACTS
-from reporter.meta.config import PREFIX, PLATFORM, DOMAIN
 
 
 def publish(text: str) -> None:
@@ -23,7 +24,9 @@ def publish_on_gitlab(text: str) -> None:
 
     def _upload_image_to_github(name):
         path = PATH_ARTIFACTS / name
-        assert path.exists(), f"File {path} does not exist"
+        if not path.exists():
+            msg = f"File {path} does not exist. Are you sure you specified the correct configuration?"
+            raise FileNotFoundError(msg)
         uploaded_file = project.upload(name, filedata=open(path, "rb"))
         return uploaded_file["url"]
 
