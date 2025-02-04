@@ -35,4 +35,4 @@ def plots_table() -> str:
 
 def text() -> str:
     """Body text for general component."""
-    return f"**General**\n" f"{create_details_block('Plots comparison', plots_table())}"
+    return f"**General**\n{create_details_block('Plots comparison', plots_table())}"

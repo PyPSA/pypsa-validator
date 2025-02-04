@@ -16,11 +16,9 @@ from reporter.meta.repo import (
 def text() -> str:
     """Subtext for the comment."""
     hash_feature = (
-        f"([{HASH_FEAT_SHORT}]({DOMAIN}/" f"{OWNER}/{REPO}/commits/{HASH_FEAT})) "
+        f"([{HASH_FEAT_SHORT}]({DOMAIN}/{OWNER}/{REPO}/commits/{HASH_FEAT})) "
     )
-    hash_main = (
-        f"([{HASH_MAIN_SHORT}]({DOMAIN}/" f"{OWNER}/{REPO}/commits/{HASH_MAIN}))"
-    )
+    hash_main = f"([{HASH_MAIN_SHORT}]({DOMAIN}/{OWNER}/{REPO}/commits/{HASH_MAIN}))"
     time = (
         pd.Timestamp.now()
         .tz_localize("UTC")
