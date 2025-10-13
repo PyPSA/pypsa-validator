@@ -177,7 +177,7 @@ runs:
 
   - name: Download artifacts
     if: ${{ inputs.step == 'create-comment' }}
-    uses: actions/download-artifact@v4
+    uses: actions/download-artifact@v5
 
   - name: Move artifacts to home directory
     if: ${{ inputs.step == 'create-comment' }}
@@ -223,7 +223,7 @@ runs:
 
   - name: Checkout model repo
     if: ${{ inputs.step == 'create-comment' }}
-    uses: actions/checkout@v4
+    uses: actions/checkout@v5
     with:
       fetch-depth: 0
       path: model-repo
@@ -255,7 +255,7 @@ runs:
 
   - name: Checkout validator repo
     if: ${{ inputs.step == 'create-comment' }}
-    uses: actions/checkout@v4
+    uses: actions/checkout@v5
     with:
       repository: lkstrp/pypsa-validator
       ref: ${{ github.repository }}
@@ -365,7 +365,7 @@ runs:
   - name: Retrieve or create comment
     if: ${{ inputs.step == 'create-comment' }}
     id: comment
-    uses: actions/github-script@v7
+    uses: actions/github-script@v8
     with:
       script: |
         const owner = context.repo.owner;
@@ -408,7 +408,7 @@ runs:
 
   - name: Update comment
     if: ${{ inputs.step == 'create-comment' }}
-    uses: actions/github-script@v7
+    uses: actions/github-script@v8
     with:
       script: |
         const fs = require('fs');
